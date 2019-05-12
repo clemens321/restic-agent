@@ -1,0 +1,16 @@
+
+version: '3.5'
+
+services:
+  test:
+    build:
+      context: .
+    command:
+      "--volume=/app"
+    volumes:
+      - ../restic-repo-dev:/data/restic
+      - ./src:/app:ro
+    environment:
+      - RESTIC_REPOSITORY=/data/restic
+      - RESTIC_PASSWORD=restic-agent_dev
+      - RESTIC_HOSTNAME=restic-test
