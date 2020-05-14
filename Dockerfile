@@ -17,7 +17,10 @@ ENV GO111MODULE=on
 RUN go mod tidy && go build
 
 # Productive environment
-FROM restic/restic:0.9.5 AS runner
+FROM alpine:3.11 AS runner
+
+# from https://github.com/restic/restic/blob/master/docker/Dockerfile
+RUN apk add --update --no-cache ca-certificates fuse openssh-client
 
 # Add database clients
 RUN apk add --no-cache postgresql-client mariadb-client
