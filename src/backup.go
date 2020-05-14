@@ -106,7 +106,7 @@ func (b *BackupSet) run() {
 
 	for i, s := range b.steps {
 		b.waitGroup.Add(1)
-		go func() {
+		go func(i int, s BackupStep) {
 			defer b.waitGroup.Done()
 
 			logger.Info("running backup step", zap.Int("index", i), zap.String("type", s.Type()), zap.String("description", s.Description()))
@@ -120,7 +120,7 @@ func (b *BackupSet) run() {
 			}
 			b.metrics.BackupsSuccessful.Inc()
 			logger.Info("backup step finished", zap.Int("index", i), zap.String("type", s.Type()), zap.String("description", s.Description()))
-		}()
+		}(i, s)
 	}
 
 	b.waitGroup.Wait()
