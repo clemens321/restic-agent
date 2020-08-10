@@ -8,7 +8,7 @@ import (
 	"go.uber.org/zap"
 )
 
-// Set of backup steps
+// Set of backup steps, usually only one set exists per instance
 type BackupSet struct {
 	destination BackupDestination
 	running     safeBool
@@ -18,13 +18,15 @@ type BackupSet struct {
 	metrics *MetricsCollection
 }
 
-// Destination for restic
+// BackupDestination contains infos about the restic repository to use.
+// This struct is held in BackupSet and passed to BackupStep(s).
 type BackupDestination struct {
-	repository string // not used, see environment variable RESTIC_REPOSITORY
-	password   string // not used, see environment variable RESTIC_PASSWORD
+	repository string // currently not used, see environment variable RESTIC_REPOSITORY
+	password   string // currently not used, see environment variable RESTIC_PASSWORD
 	hostname   string // used as --host argument
 }
 
+// BackupStep is the basic interface for all steps, volumes, databases, ...
 type BackupStep interface {
 	IsRunning() bool
 	Run(*MetricsCollection) error

@@ -30,6 +30,9 @@ type config struct {
 	PostgresUser     string `envconfig:"POSTGRES_USER"`
 }
 
+// main contains basic handling, primarily parsing the command line
+// (along with the environment variables) and initialization of various
+// endpoints and subsystems.
 func main() {
 	var wg sync.WaitGroup
 
