@@ -20,7 +20,7 @@ RUN go mod tidy && go build
 FROM alpine:3.11 AS runner
 
 # from https://github.com/restic/restic/blob/master/docker/Dockerfile
-RUN apk add --update --no-cache ca-certificates fuse openssh-client
+RUN apk add --update --no-cache ca-certificates fuse openssh-client tzdata
 
 # Add database clients
 RUN apk add --no-cache postgresql-client mariadb-client
