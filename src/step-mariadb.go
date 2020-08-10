@@ -3,9 +3,7 @@ package main
 import (
 	"bytes"
 	"errors"
-	"os"
 	"os/exec"
-	"strconv"
 
 	"go.uber.org/zap"
 )
