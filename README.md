@@ -20,7 +20,7 @@ Base environment variables:
 - `RESTIC_REPOSITORY`: repository name
 - `RESTIC_PASSWORD`: repository password
 - `RESTIC_HOSTNAME`: overwrite hostname for snapshots
-- `RUN_ON_BOOT`: run a backup on startup
+- `RUN_ON_STARTUP`: run a backup on container start
 - `SCHEDULE`: cron schedule (with seconds)
 - `DEBUG`: enable verbose output
 
@@ -85,11 +85,22 @@ Can be applied multiple times to add multiple restic steps.
 
 ### PostgreSQL
 
-Currently only one database is supported, confgured through environment variables
+`POSTGRES_DB`, `POSTGRES_USER` and `POSTGRES_PASSWORD` are named as in the according docker image.
 
 Environment options:
-- `POSTGRES_NAME` (Virtual) filename in backup, default is "/psql-<host>-<database>.dmp"
+- `POSTGRES_NAME` (Virtual) filename in backup, default is "/psql-\<host>-\<database>.dmp"
 - `POSTGRES_HOST` Host or service name of database server/container
 - `POSTGRES_DB`
 - `POSTGRES_USER`
 - `POSTGRES_PASSWORD`
+
+### MySQL / Mariadb
+
+`MYSQL_DATABASE`, `MYSQL_USER` and `MYSQL_PASSWORD` are named as in the mariadb docker image.
+
+Environment options:
+- `MYSQL_NAME` (Virtual) filename in backup, default is "/mysql-\<host>-\<database>.dmp"
+- `MYSQL_HOST` Host or service name of database server/container
+- `MYSQL_DATABASE`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`

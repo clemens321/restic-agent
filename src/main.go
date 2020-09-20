@@ -28,6 +28,12 @@ type config struct {
 	PostgresDatabase string `envconfig:"POSTGRES_DB"`
 	PostgresPassword string `envconfig:"POSTGRES_PASSWORD"`
 	PostgresUser     string `envconfig:"POSTGRES_USER"`
+
+	MysqlName     string `envconfig:"MYSQL_NAME"`
+	MysqlHost     string `envconfig:"MYSQL_HOST"`
+	MysqlDatabase string `envconfig:"MYSQL_DATABASE"`
+	MysqlPassword string `envconfig:"MYSQL_PASSWORD"`
+	MysqlUser     string `envconfig:"MYSQL_USER"`
 }
 
 // main contains basic handling, primarily parsing the command line
@@ -172,6 +178,18 @@ func parseCmdLine(c *config, b *BackupSet) {
 		}
 		if c.PostgresName != "" {
 			s.SetName(c.PostgresName)
+		}
+		b.AddStep(s)
+	}
+
+	// Add database steps by environment variables - MariaDB
+	if c.MysqlHost != "" {
+		s, err := NewMariadbStep(c.MysqlHost, c.MysqlUser, c.MysqlPassword, c.MysqlDatabase)
+		if err != nil {
+			logger.Fatal("Failed to add mariadb step", zap.Error(err))
+		}
+		if c.MysqlName != "" {
+			s.SetName(c.MysqlName)
 		}
 		b.AddStep(s)
 	}
