@@ -85,11 +85,18 @@ Can be applied multiple times to add multiple restic steps.
 
 ### PostgreSQL
 
-Currently only one database is supported, confgured through environment variables
-
 Environment options:
-- `POSTGRES_NAME` (Virtual) filename in backup, default is "/psql-<host>-<database>.dmp"
+- `POSTGRES_NAME` (Virtual) filename in backup, default is "/psql-\<host>-\<database>.dmp"
 - `POSTGRES_HOST` Host or service name of database server/container
 - `POSTGRES_DB`
 - `POSTGRES_USER`
 - `POSTGRES_PASSWORD`
+
+### MySQL / Mariadb
+
+Environment options:
+- `MYSQL_NAME` (Virtual) filename in backup, default is "/mysql-\<host>-\<database>.dmp"
+- `MYSQL_HOST` Host or service name of database server/container
+- `MYSQL_DB`
+- `MYSQL_USER`
+- `MYSQL_PASSWORD`
