@@ -31,7 +31,7 @@ type config struct {
 
 	MysqlName     string `envconfig:"MYSQL_NAME"`
 	MysqlHost     string `envconfig:"MYSQL_HOST"`
-	MysqlDatabase string `envconfig:"MYSQL_DB"`
+	MysqlDatabase string `envconfig:"MYSQL_DATABASE"`
 	MysqlPassword string `envconfig:"MYSQL_PASSWORD"`
 	MysqlUser     string `envconfig:"MYSQL_USER"`
 }

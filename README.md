@@ -85,6 +85,8 @@ Can be applied multiple times to add multiple restic steps.
 
 ### PostgreSQL
 
+`POSTGRES_DB`, `POSTGRES_USER` and `POSTGRES_PASSWORD` are named as in the according docker image.
+
 Environment options:
 - `POSTGRES_NAME` (Virtual) filename in backup, default is "/psql-\<host>-\<database>.dmp"
 - `POSTGRES_HOST` Host or service name of database server/container
@@ -94,9 +96,11 @@ Environment options:
 
 ### MySQL / Mariadb
 
+`MYSQL_DATABASE`, `MYSQL_USER` and `MYSQL_PASSWORD` are named as in the mariadb docker image.
+
 Environment options:
 - `MYSQL_NAME` (Virtual) filename in backup, default is "/mysql-\<host>-\<database>.dmp"
 - `MYSQL_HOST` Host or service name of database server/container
-- `MYSQL_DB`
+- `MYSQL_DATABASE`
 - `MYSQL_USER`
 - `MYSQL_PASSWORD`
