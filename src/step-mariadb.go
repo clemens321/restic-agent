@@ -60,7 +60,7 @@ func (s *mariadbStep) Run(m *MetricsCollection) (err error) {
 	}
 	defer s.running.Set(false)
 
-	args := []string{"-h", s.host, "-u", s.user, "-p", s.password}
+	args := []string{"-h", s.host, "-u", s.user, "--password=" + s.password}
 	args = append(args, s.database)
 	cmdDb := exec.Command("mariadb-dump", args...)
 
