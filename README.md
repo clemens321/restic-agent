@@ -20,7 +20,7 @@ Base environment variables:
 - `RESTIC_REPOSITORY`: repository name
 - `RESTIC_PASSWORD`: repository password
 - `RESTIC_HOSTNAME`: overwrite hostname for snapshots
-- `RUN_ON_BOOT`: run a backup on startup
+- `RUN_ON_STARTUP`: run a backup on container start
 - `SCHEDULE`: cron schedule (with seconds)
 - `DEBUG`: enable verbose output
 
