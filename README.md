@@ -83,6 +83,11 @@ Command line options:
 
 Can be applied multiple times to add multiple restic steps.
 
+#### Exclude Files from Volume
+
+You can exclude folders and files by creating a `.resticexclude` in the root of each volume to be backed up.
+If the file exists it will be passed to restic with the [`--exclude-file`](https://restic.readthedocs.io/en/latest/040_backup.html#excluding-files) parameter.  
+
 ### PostgreSQL
 
 `POSTGRES_DB`, `POSTGRES_USER` and `POSTGRES_PASSWORD` are named as in the according docker image.
