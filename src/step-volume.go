@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"errors"
+	"os"
 	"os/exec"
 
 	"go.uber.org/zap"
@@ -44,6 +45,9 @@ func (s *volumeStep) Run(m *MetricsCollection) (err error) {
 	defer s.running.Set(false)
 
 	args := []string{"backup", "--json", "--host", s.destination.hostname}
+	if _, err := os.Stat(s.path + "/.resticexclude"); err == nil {
+		args = append(args, "--exclude-file="+s.path+"/.resticexclude")
+	}
 	args = append(args, s.path)
 	cmd := exec.Command("restic", args...)
 
