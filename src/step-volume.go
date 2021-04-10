@@ -5,6 +5,7 @@ import (
 	"errors"
 	"os"
 	"os/exec"
+	"strings"
 
 	"go.uber.org/zap"
 )
@@ -45,6 +46,9 @@ func (s *volumeStep) Run(m *MetricsCollection) (err error) {
 	defer s.running.Set(false)
 
 	args := []string{"backup", "--json", "--host", s.destination.hostname}
+	// Mitigate https://github.com/restic/restic/issues/2345
+	// TODO: Remove when restic issue #2345 is fixed
+	args = append(args, "--cache-dir="+os.Getenv("HOME")+"/.cache/restic"+strings.ReplaceAll(s.path, "/", "-"))
 	if _, err := os.Stat(s.path + "/.resticexclude"); err == nil {
 		args = append(args, "--exclude-file="+s.path+"/.resticexclude")
 	}
