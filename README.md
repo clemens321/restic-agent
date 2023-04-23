@@ -109,3 +109,26 @@ Environment options:
 - `MYSQL_DATABASE`
 - `MYSQL_USER`
 - `MYSQL_PASSWORD`
+
+## Restore
+
+There are no tools available besides the restic integrated ones. Here is a way to restore files and postgres:
+
+```
+docker-compose run --rm --entrypoint=/bin/sh restic
+
+# First we will restore the database to an already created but empty one
+restic snapshots
+# search for the database dump to recover from
+RESTIC_ID="paste_id_here"
+# copy postgres password to clipboard, pg_pass would be written during the backup step
+echo $POSTGRES_PASSWORD
+restic dump e1712fba /psql-${POSTGRES_HOST}-${POSTGRES_DB}.dmp | psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB
+# paste postgres password here
+
+# And now the files
+restic snapshots
+# search for the volume snapshot
+RESTIC_ID="paste_id_here"
+restic restore --target=/ $RESTIC_ID
+```
