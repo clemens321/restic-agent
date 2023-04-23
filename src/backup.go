@@ -161,7 +161,7 @@ func (b *BackupSet) InitializeRepository() error {
 // Check if the repository exists
 func (b *BackupSet) ensureRepository() error {
 	logger.Debug("ensuring backup repository exists")
-	cmd := exec.Command("restic", "snapshots", "--json", "--last")
+	cmd := exec.Command("restic", "snapshots", "--json", "--latest", "1")
 	out, err := cmd.Output()
 	if err != nil {
 		exiterr, ok := err.(*exec.ExitError)
