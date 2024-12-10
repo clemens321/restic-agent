@@ -34,7 +34,7 @@ services:
   #
 
   backup:
-    image: clemens321/restic-agent:latest
+    image: ghcr.io/clemens321/restic-agent:latest
     restart: unless-stopped
     command:
       - "--volume=/data/app"
