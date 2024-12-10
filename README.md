@@ -123,7 +123,7 @@ restic snapshots
 RESTIC_ID="paste_id_here"
 # copy postgres password to clipboard, pg_pass would be written during the backup step
 echo $POSTGRES_PASSWORD
-restic dump e1712fba /psql-${POSTGRES_HOST}-${POSTGRES_DB}.dmp | psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB
+restic dump $RESTIC_ID /psql-${POSTGRES_HOST}-${POSTGRES_DB}.dmp | psql -h $POSTGRES_HOST -U $POSTGRES_USER -d $POSTGRES_DB
 # paste postgres password here
 
 # And now the files
